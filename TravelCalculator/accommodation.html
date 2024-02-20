@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Accommodation expenses</title>
+    <style>
+        .text-center{
+        margin-top: 15px;
+       }
+       body {
+        background-image: url("slika.jpg");
+        background-size: 100%;
+       }
+       .container{
+        background-color: rgba(242, 242, 242, 0.9);
+        padding: 3%;
+        margin: 70px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+          <h2>Accommodation Expenses Calculator</h2>
+        </div>
+          <div class="mb-3">
+            <label for="NumberOfPersons" class="form-label">Number of persons:</label>
+            <input type="text" class="form-control" id="persons" required/>
+          </div>
+          <div class="mb-3">
+            <label for="NumberOfNights" class="form-label">Number of nights:</label>
+            <input type="text" class="form-control" id="nights" required/>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Accommodation price per person:</label>
+            <input type="text" class="form-control" id="price" required>
+          </div>
+          <div class="mb-3">
+            <label for="costs" class="form-label">Accommodation Costs:</label>
+            <input type="text" class="form-control" id="costs" readonly>
+          </div>
+          <button type="submit" class="btn btn-primary" onclick="calculateAccommodation()">Calculate</button>
+      </div> 
+      <script>
+        function calculateAccommodation(){
+            const NumberOfPersons = parseInt(document.getElementById("persons").value);
+            const NumberOfNights = parseInt(document.getElementById("nights").value);
+            const PricePerPerson =  parseFloat(document.getElementById('price').value);
+
+            const totalCosts = NumberOfPersons*NumberOfNights*PricePerPerson;
+
+            document.getElementById('costs').value = totalCosts.toFixed(2);
+
+            localStorage.setItem("accommodationCosts", totalCosts.toFixed(2));
+        }
+      </script>
+</body>
+</html>
